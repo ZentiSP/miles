@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video with Volume Control</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Placeholder for the YouTube video -->
+    <div class="center-wrapper">
+        <div class="mile"><img src="./pic/laughing-miles-morales.gif"></div>
+        <div id="player"></div>
+        <div class="mile"><img src="./pic/200w.gif"></div>
+    </div>
+
+    <script>
+        // Load the YouTube IFrame Player API code asynchronously
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player; // YouTube player object
+
+        // Function called when YouTube API is ready
+        function onYouTubeIframeAPIReady() {
+            // Create the YouTube player
+            player = new YT.Player('player', {
+                height: '450',
+                width: '650',
+                videoId: 'xFlF3Cp6X2c',
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'enablejsapi': 1, // Enable JavaScript API
+                    'origin': window.location.origin
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        // Function called when the player is ready
+        function onPlayerReady(event) {
+            // Set the volume to 50 (range is 0 to 100)
+            player.setVolume(50);
+        }
+    </script>
+</body>
+</html>
